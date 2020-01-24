@@ -21,7 +21,7 @@ func main() {
 		fmt.Println("usage: velux-cli <command> [<args>]")
 		fmt.Println("The most commonly used commands are: ")
 		fmt.Println(" print   Shows status")
-		fmt.Println(" dump    Writs json into file")
+		fmt.Println(" dump    Writes json into file")
 		fmt.Println(" moveShutters moves shutters")
 		return
 	}
@@ -45,7 +45,7 @@ func main() {
 		tokenpath := cmd.String("tokenfile", "/openhab/conf/token.json", "file with access token")
 		position := cmd.Int("pos", 0, "move shutter to position")
 		var shutters arrayFlags
-		cmd.Var(&shutters, "shutters", "which sutters to control")
+		cmd.Var(&shutters, "shutters", "which shutters to control")
 		cmd.Parse(os.Args[2:])
 
 		state := fetchData(*tokenpath)
