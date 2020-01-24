@@ -24,6 +24,7 @@ func DumpJSON(state *State, outfile string) {
 	status.Lux = make(map[string]int64)
 	status.ShutterStatus = make(map[string]int64)
 	status.BatteryPercent = make(map[string]int64)
+	status.Locked = make(map[string]int64)
 	status.RfStrength = make(map[string]int64)
 
 	for _, r := range state.RoomStatus {
@@ -42,7 +43,8 @@ func DumpJSON(state *State, outfile string) {
 		if m.Type == "NXO" {
 			status.ShutterStatus[moduleName] = m.TargetPosition
 		} else if m.Type == "NXG" {
-			// bridge -- noop
+			// bridge -- has the locked status
+			status.Locked[moduleName] = m.BatteryPercent
 		} else {
 			status.BatteryPercent[moduleName] = m.BatteryPercent
 			status.RfStrength[moduleName] = m.RfStrength
